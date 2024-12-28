@@ -167,6 +167,10 @@ const CureData = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Detected Disease</CardTitle>
+                <audio controls src="/aisound.mp3">
+                  Your browser does not support the
+                  <code>audio</code> element.
+                </audio>{" "}
               </CardHeader>
               <CardContent>
                 {renderSuggestions(

@@ -1,14 +1,14 @@
 import SkeletonDemo from "@/components/SkeletonDemo";
-import { userInSessionType } from "@/lib/types/type";
-import { getUserInSession } from "@/lib/userInSession";
+import { Order } from "@/lib/types/type";
+import { getOrders } from "@/lib/db/orderCrud";
 import OrdersTable from "./orderTable";
 
 const OrderPage = async () => {
-  let userInSession: userInSessionType | null = null;
+  let orders: Order[] | null = null;
   let error: string | null = null;
 
   try {
-    userInSession = getUserInSession();
+    orders = await getOrders();
   } catch (err) {
     console.error("Error fetching roomTypes:", err);
     error = "Failed to load roomTypes. Please try again later.";
@@ -18,13 +18,13 @@ const OrderPage = async () => {
     return <div className="text-red-500">{error}</div>;
   }
 
-  if (userInSession === null) {
+  if (orders === null) {
     return <SkeletonDemo />;
   }
 
   return (
     <div className="text-gray-900 dark:text-slate-50">
-      <OrdersTable userInSession={userInSession} />
+      <OrdersTable orders={orders} />
     </div>
   );
 };

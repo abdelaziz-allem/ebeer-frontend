@@ -23,7 +23,7 @@ interface TopPerformersProps {
 
 export default function TopPerformers({ farmers, shops }: TopPerformersProps) {
   return (
-    <div className="space-y-4 flex">
+    <div className="flex flex-col gap-2 md:flex-row justify-around">
       <ChartContainer
         config={{
           value: {
@@ -31,16 +31,24 @@ export default function TopPerformers({ farmers, shops }: TopPerformersProps) {
             color: "hsl(var(--chart-1))",
           },
         }}
-        className="h-[300px]"
+        className="h-[400px] w-full md:w-1/2 bg-gradient-to-r from-emerald-300 to-emerald-500 rounded-lg shadow-lg"
       >
+        <h3 className="text-xl font-semibold text-center py-2 text-white">
+          Top Farmers
+        </h3>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={farmers} layout="vertical" margin={{ left: 100 }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" />
-            <YAxis dataKey="name" type="category" />
+          <BarChart data={farmers} layout="vertical" margin={{ left: 120 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#ffffff66" />
+            <XAxis type="number" tick={{ fill: "white" }} />
+            <YAxis
+              dataKey="name"
+              type="category"
+              tick={{ fill: "white" }}
+              width={120}
+            />
             <ChartTooltip content={<ChartTooltipContent />} />
-            <Legend />
-            <Bar dataKey="value" fill="var(--color-value)" name="Revenue" />
+            <Legend wrapperStyle={{ color: "white" }} />
+            <Bar dataKey="value" fill="#ffffff99" name="Revenue" barSize={30} />
           </BarChart>
         </ResponsiveContainer>
       </ChartContainer>
@@ -52,16 +60,24 @@ export default function TopPerformers({ farmers, shops }: TopPerformersProps) {
             color: "hsl(var(--chart-2))",
           },
         }}
-        className="h-[300px]"
+        className="h-[400px] w-full md:w-1/2 bg-gradient-to-r from-indigo-300 to-indigo-500 rounded-lg shadow-lg"
       >
+        <h3 className="text-xl font-semibold text-center py-2 text-white">
+          Top Shops
+        </h3>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={shops} layout="vertical" margin={{ left: 100 }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" />
-            <YAxis dataKey="name" type="category" />
+          <BarChart data={shops} layout="vertical" margin={{ left: 120 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#ffffff66" />
+            <XAxis type="number" tick={{ fill: "white" }} />
+            <YAxis
+              dataKey="name"
+              type="category"
+              tick={{ fill: "white" }}
+              width={120}
+            />
             <ChartTooltip content={<ChartTooltipContent />} />
-            <Legend />
-            <Bar dataKey="value" fill="var(--color-value)" name="Revenue" />
+            <Legend wrapperStyle={{ color: "white" }} />
+            <Bar dataKey="value" fill="#ffffff99" name="Revenue" barSize={30} />
           </BarChart>
         </ResponsiveContainer>
       </ChartContainer>

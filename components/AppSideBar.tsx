@@ -22,7 +22,7 @@ export function AppSidebar({ ...props }: any) {
     <Sidebar collapsible="icon" {...props} className="bg-slate-100 ">
       <SidebarHeader>
         <div className="mb-6 flex items-center justify-center gap-2 p-4">
-          <Image src="/logo.png" height={300} width={300} alt="HMS Logo" />
+          <Image src="/logo.png" height={200} width={200} alt="HMS Logo" />
         </div>
       </SidebarHeader>
       <SidebarContent>

@@ -1,7 +1,11 @@
+import { Produce } from "@/lib/types/type";
 import { useState, useEffect } from "react";
-import { CartItem, Product } from "./types";
 
-export function useCart(filteredProducts: Product[]) {
+export interface CartItem extends Produce {
+  quantity: number;
+}
+
+export function useCart(filteredProducts: Produce[]) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {

@@ -1,17 +1,17 @@
-import { Produce, User, userInSessionType } from "@/lib/types/type";
+import { Produce, User } from "@/lib/types/type";
+import ProduceTable from "./produceTable";
 import SkeletonDemo from "@/components/SkeletonDemo";
 import { getProduce } from "@/lib/db/produceCrud";
-import ProduceList from "./ProduceList";
-import { getUserInSession } from "@/lib/userInSession";
+import { getUsersByRole } from "@/lib/db/userCrud";
 
-const CartPage = async () => {
+const GuestsPage = async () => {
   let produce: Produce[] | null = null;
-  let userInSession: userInSessionType | null = null;
+  let users: User[] | null = null;
   let error: string | null = null;
 
   try {
     produce = await getProduce();
-    userInSession = getUserInSession();
+    users = await getUsersByRole("Farmer");
   } catch (err) {
     console.error("Error fetching produce:", err);
     error = "Failed to load produce. Please try again later.";
@@ -21,15 +21,15 @@ const CartPage = async () => {
     return <div className="text-red-500">{error}</div>;
   }
 
-  if (produce === null || userInSession === null) {
+  if (produce === null || users === null) {
     return <SkeletonDemo />;
   }
 
   return (
     <div className="text-gray-900 dark:text-slate-50">
-      <ProduceList produce={produce} userInSession={userInSession} />
+      <ProduceTable produce={produce} users={users} />
     </div>
   );
 };
 
-export default CartPage;
+export default GuestsPage;

@@ -13,6 +13,9 @@ import {
   Users,
   ListMinus,
   Camera,
+  Vegan,
+  ShoppingCart,
+  Leaf,
 } from "lucide-react";
 const sidebarItems = [
   {
@@ -26,7 +29,7 @@ const sidebarItems = [
     href: "/dashboard/orders",
     icon: ListMinus,
     text: "Dalab",
-    role: ["Admin", "Reception", "Housekeeping"],
+    role: ["Admin", "Farmer"],
   },
 
   {
@@ -37,10 +40,17 @@ const sidebarItems = [
   },
 
   {
-    href: "/dashboard/cart",
-    icon: Store,
-    text: "Dalbo",
+    href: "/dashboard/produce",
+    icon: Leaf,
+    text: "Dalag",
     role: ["Admin"],
+  },
+
+  {
+    href: "/dashboard/cart",
+    icon: ShoppingCart,
+    text: "Dalbo",
+    role: ["Admin", "ShopKeeper"],
   },
 
   {
@@ -54,7 +64,7 @@ const sidebarItems = [
     href: "/dashboard/cure",
     icon: Camera,
     text: "Hel cudurka",
-    role: ["Admin"],
+    role: ["Admin", "Farmer"],
   },
 
   {

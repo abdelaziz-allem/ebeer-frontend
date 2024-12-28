@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Product, CartItem } from "./types";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,40 +11,44 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
+import { Produce } from "@/lib/types/type";
 
 interface ProductCardProps {
-  product: Product;
+  produce: Produce;
   addToCart: (item: CartItem) => void;
 }
 
-export default function ProductCard({ product, addToCart }: ProductCardProps) {
+export interface CartItem extends Produce {
+  quantity: number;
+}
+
+export default function ProductCard({ produce, addToCart }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
-    addToCart({ ...product, quantity });
+    addToCart({ ...produce, quantity });
     toast({
       title: "Added to cart",
-      description: `${quantity} ${product.name}(s) added to your cart.`,
+      description: `${quantity} ${produce.name}(s) added to your cart.`,
     });
-    console.log("Added to cart:", { ...product, quantity });
   };
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{product.name}</CardTitle>
+        <CardTitle>{produce.name}</CardTitle>
       </CardHeader>
       <CardContent>
         <Image
-          src={product.image}
-          alt={product.name}
+          src={`/${produce.name}.png`}
+          alt={produce.name}
           width={200}
           height={200}
           className="mb-4"
         />
-        <p className="text-2xl font-bold">${product.price.toFixed(2)}</p>
-        <p>Farmer: {product.farmer.name}</p>
-        <p>Rating: {product.farmer.rating}/5</p>
+        <p className="text-2xl font-bold">${produce.price}</p>
+        <p>Farmer: {produce.farmer.name}</p>
+        <p>Rating: 4/5</p>
       </CardContent>
       <CardFooter className="flex justify-between">
         <input

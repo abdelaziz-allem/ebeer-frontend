@@ -1,7 +1,7 @@
+import { User } from "@/lib/types/type";
 import { useState, useMemo } from "react";
-import { ShopKeeper } from "./shopkeeperdata";
 
-export function useShopKeeperSearch(ShopKeepers: ShopKeeper[]) {
+export function useShopKeeperSearch(ShopKeepers: User[]) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredShopKeepers = useMemo(() => {
